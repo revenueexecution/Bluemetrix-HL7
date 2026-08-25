@@ -17,6 +17,9 @@
     --blue:#0B67D1;
     --blue-bright:#1187F4;
     --orange:#FF7A00;
+    --logo-blue:#0084FF;
+    --logo-navy:#011539;
+    --logo-orange:#F96702;
     --border:#DFE7F1;
     --badge-bg:#EEF6FF;
     --badge-border:#CFE3FF;
@@ -54,11 +57,15 @@
   }
   .logo{
     display:inline-flex; align-items:center; gap:2px;
-    text-decoration:none; font-size:21px; font-weight:800; letter-spacing:-0.02em;
+    text-decoration:none; font-size:21px; font-weight:800; letter-spacing:-0.02em; line-height:1;
   }
-  .logo .blue{ color:var(--blue-bright); }
-  .logo .navy{ color:var(--navy-dark); }
-  .logo .dot{ width:6px; height:6px; border-radius:1px; background:var(--orange); align-self:flex-start; margin-left:2px; }
+  .logo .blue{ color:var(--logo-blue); }
+  .logo .navy{ color:var(--logo-navy); }
+  .logo .dot-i{ position:relative; }
+  .logo .dot-i::after{
+    content:''; position:absolute; top:2px; left:50%; transform:translateX(-50%);
+    width:4px; height:4px; background:var(--logo-orange);
+  }
 
   .badge{
     font-size:12px; font-weight:600; color:var(--blue);
@@ -326,7 +333,7 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="logo" href="https://www.bluemetrix.com/" target="_blank" rel="noopener">
-      <span class="blue">blue</span><span class="navy">metrix</span><span class="dot"></span>
+      <span class="blue">blue</span><span class="navy">metr<span class="dot-i">i</span>x</span>
     </a>
     <span class="badge">For Hospital IT &amp; Security Leaders</span>
   </div>
