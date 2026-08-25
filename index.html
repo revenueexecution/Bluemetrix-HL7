@@ -225,6 +225,48 @@
   .demo-links span{ display:block; font-size:13px; font-weight:400; color:var(--text-dim); margin-top:2px; }
   .demo-note{ font-size:13.5px; color:var(--text-dim); margin-top:18px; max-width:600px; }
 
+  /* ---------- KEY MOMENTS (video stills) ---------- */
+  .moments-grid{ margin-top:44px; display:grid; grid-template-columns:1fr; gap:16px; }
+  @media(min-width:860px){ .moments-grid{ grid-template-columns:repeat(2,1fr); } }
+  .moment-card{
+    background:var(--white); border:1px solid var(--border); border-radius:14px;
+    overflow:hidden; box-shadow:0 1px 2px rgba(20,38,61,0.04);
+  }
+  .moment-shot{
+    background:#0E1420; padding:16px 16px 14px; position:relative; min-height:150px;
+    display:flex; flex-direction:column; justify-content:center;
+    font-family:var(--font-mono);
+  }
+  .moment-time{
+    position:absolute; top:12px; right:14px; font-size:11px; color:rgba(255,255,255,0.5);
+    background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:5px;
+  }
+  .moment-caption{
+    padding:14px 18px; font-size:13.5px; color:var(--navy); font-weight:600; line-height:1.5;
+    border-top:1px solid var(--border);
+  }
+  .moment-caption span{ display:block; font-weight:400; color:var(--text-dim); font-size:12px; margin-top:4px; }
+
+  /* mini UI recreations */
+  .mm-line{ font-size:11.5px; line-height:1.85; color:#8B9BB4; white-space:pre; }
+  .mm-line .f{ background:rgba(248,113,113,0.18); color:#F87171; padding:0 2px; border-radius:2px; }
+  .mm-tiers{ display:flex; flex-direction:column; gap:6px; }
+  .mm-tier{
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    border-radius:6px; padding:8px 12px; font-size:11.5px; color:#C3CEE0;
+  }
+  .mm-tier b{ color:#fff; font-weight:600; }
+  .mm-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .mm-stat{ background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:10px 6px; text-align:center; }
+  .mm-stat b{ display:block; font-size:18px; color:#fff; }
+  .mm-stat span{ font-size:9.5px; color:#8B9BB4; text-transform:uppercase; letter-spacing:0.04em; }
+  .mm-cols{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .mm-col-h{ font-size:10px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .mm-col-h.tok{ color:#F87171; } .mm-col-h.reh{ color:#34D399; }
+  .mm-tok{ color:#8B9BB4; } .mm-tok b{ color:#F87171; font-weight:600; }
+  .mm-reh{ color:#8B9BB4; } .mm-reh b{ color:#34D399; font-weight:600; }
+
   /* ---------- WHERE IT FITS ---------- */
   .fit-flow{
     margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; gap:0;
@@ -376,9 +418,9 @@
 
       <div class="flow-grid">
         <div class="flow-step"><div class="flow-num">1</div><h3>Ingest real-world HL7</h3><p>Structured segments, free-text narrative and embedded attachments read together, not as separate pipelines.</p><span class="flow-arrow">→</span></div>
-        <div class="flow-step"><div class="flow-num">2</div><h3>Discover across every path</h3><p>Deterministic mapping, an AI detection ensemble for narrative, and content-type inspection for embedded documents.</p><span class="flow-arrow">→</span></div>
+        <div class="flow-step"><div class="flow-num">2</div><h3>Discover across every path</h3><p>Deterministic mapping, an ensemble of AI models (GLiNER, DeBERTa, Presidio) tuned for clinical narrative, and content-type inspection for embedded documents. Proven across ADT, ORU, ORM, SIU, MDM and VXU message types.</p><span class="flow-arrow">→</span></div>
         <div class="flow-step"><div class="flow-num">3</div><h3>Tokenise, format-preserving</h3><p>Every discovered value is replaced with a token that preserves format and referential consistency.</p><span class="flow-arrow">→</span></div>
-        <div class="flow-step"><div class="flow-num">4</div><h3>Use downstream, safely</h3><p>Protected messages flow on unmodified in structure. Rehydration only under policy control.</p></div>
+        <div class="flow-step"><div class="flow-num">4</div><h3>Use downstream, safely</h3><p>Protected messages flow on unmodified in structure. Rehydration only under policy control. Deploys as containerized services on existing infrastructure — no vault, no EHR schema changes, no separate platform.</p></div>
       </div>
     </div>
   </section>
@@ -414,6 +456,66 @@
           <a href="https://vimeo.com/1218858045?share=copy" target="_blank" rel="noopener">Watch the HL7 demo on Vimeo →<span>Open the demonstration in Vimeo</span></a>
           <a href="https://www.bluemetrix.com/contact" target="_blank" rel="noopener">Discuss this against your own HL7 feed →<span>Bring a real feed from your environment</span></a>
         </div>
+
+        <div class="moments-grid">
+          <div class="moment-card">
+            <div class="moment-shot">
+              <span class="moment-time">0:35</span>
+              <div class="mm-line">MSH|^~\&amp;|LIS|HOSP_A|...
+OBX|2|TX|NOTE||"Clinical Note*L||
+<span class="f">Eoghan Moriarty's</span> HbA1c
+has risen to 64. Dr Aisling
+Devlin discussed..."
+PID|1||<span class="f">994108...</span>^^^HOSP_A</div>
+            </div>
+            <div class="moment-caption">"In the real world, PHI doesn't stay where the standard says it should."<span>The problem, as stated in the demo</span></div>
+          </div>
+
+          <div class="moment-card">
+            <div class="moment-shot">
+              <span class="moment-time">1:29</span>
+              <div class="mm-tiers">
+                <div class="mm-tier"><span>Structured</span><b>declared from the profile</b></div>
+                <div class="mm-tier"><span>Free text</span><b>classified, then tokenised</b></div>
+                <div class="mm-tier"><span>Embedded document</span><b>extracted, then classified</b></div>
+                <div class="mm-tier"><span>Safety net</span><b>swept</b></div>
+              </div>
+            </div>
+            <div class="moment-caption">"Notes go to an AI detection engine trained on medical language."<span>The four detection paths, side by side</span></div>
+          </div>
+
+          <div class="moment-card">
+            <div class="moment-shot">
+              <span class="moment-time">2:01</span>
+              <div class="mm-stats">
+                <div class="mm-stat"><b>50</b><span>Values detected</span></div>
+                <div class="mm-stat"><b>50</b><span>Tokenized</span></div>
+                <div class="mm-stat"><b>0</b><span>Left as-is</span></div>
+                <div class="mm-stat"><b>18</b><span>Found in a header</span></div>
+              </div>
+            </div>
+            <div class="moment-caption">"Every detection is tokenized with format-preserving encryption."<span>Detection results on a single message</span></div>
+          </div>
+
+          <div class="moment-card">
+            <div class="moment-shot">
+              <span class="moment-time">2:34</span>
+              <div class="mm-cols">
+                <div>
+                  <div class="mm-col-h tok">Tokenized</div>
+                  <div class="mm-tok">Re: <b>TKN-8841</b>, DOB <b>TKN-DATE-14</b></div>
+                </div>
+                <div>
+                  <div class="mm-col-h reh">Rehydrated</div>
+                  <div class="mm-reh">Re: <b>Aoife Ni Bhriain</b>, DOB <b>04/03/1978</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="moment-caption">"Rehydration is a policy-controlled gate, evaluated and logged."<span>Authorised, policy-gated reversal</span></div>
+          </div>
+        </div>
+
+        <p class="demo-note">Recreated from the demo video's on-screen UI and captions to illustrate the flow inline — watch the full walkthrough on Vimeo above for the live product.</p>
       </div>
     </div>
   </section>
@@ -432,6 +534,20 @@
         <span class="fit-node">EHR / lab / analytics / AI</span>
       </div>
 
+      <p class="lede" style="margin-top:40px;">The same capability applies across a full programme lifecycle, not just live message traffic:</p>
+
+      <div class="paths" style="margin-top:24px;">
+        <div class="path-card"><span class="path-label">Migration pipeline</span><h4>Design &amp; migration</h4><p>Bulk discovery and tokenisation of legacy extracts — scales with data volume.</p></div>
+        <div class="path-card"><span class="path-label">Environment provisioning</span><h4>Build &amp; test — continuous</h4><p>Tokenised, format-preserving production copies for test, training, integration and vendor sandboxes.</p></div>
+        <div class="path-card"><span class="path-label">Integration fabric</span><h4>Coexistence — go-live</h4><p>In-line PHI inspection and tokenisation of live HL7/FHIR traffic between systems.</p></div>
+        <div class="path-card"><span class="path-label">Data platform / research</span><h4>Run-state and beyond</h4><p>De-identified, referentially intact datasets for analytics and secondary use, with policy-gated rehydration.</p></div>
+      </div>
+
+      <div class="signal-box" style="margin-top:32px;">⚠ A common failure mode becomes structurally harder to hit: production PHI leaking into test environments, vendor sandboxes, or offshore delivery teams is one of the most persistent risk patterns in healthcare IT delivery. Tokenising every non-production environment by default removes that risk class rather than relying on process discipline to prevent it.</div>
+
+      <div class="signal-box" style="margin-top:16px;">🔗 <strong>Regulatory alignment:</strong> de-identification with preserved referential integrity supports longitudinal analysis aligned to EHDS (Regulation 2025/327) and secondary-use frameworks like HealthData@IE.</div>
+
+      <p class="lede" style="margin-top:40px;">Where this shows up day to day:</p>
       <div class="paths">
         <div class="path-card"><span class="path-label">Admissions</span><h4>ADT feeds</h4><p>Patient identity and demographics protected the moment a message leaves the source system.</p></div>
         <div class="path-card"><span class="path-label">Lab &amp; results</span><h4>ORU / ORM traffic</h4><p>High-throughput result and order messages tokenised in line, without slowing lab turnaround.</p></div>
